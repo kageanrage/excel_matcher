@@ -3,6 +3,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# kev-added
+__pycache__/
+.cache
+.idea/
+config.py
+private/
+export/
+
 # C extensions
 *.so
 

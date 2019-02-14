@@ -26,9 +26,8 @@ logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s - %(levelname)s - 
 # in All_Members.db, table name is All_Members, ID column is ID, other col's of interest are ID, Age, Gender, Region, SES Member, email list?
 # in SurveyResults.csv, tab name is SurveyResults, ID column is MemberId, other COI is AttemptId
 
-
-# TODO: need to refactor to remove the hard-coding of filenames and other variables
-fname = 'SR'
+fname = 'SR'  # Insert the name of the csv/xlsx file here
+ftype = 'csv'
 
 
 # this fn converts csv to xlsx
@@ -63,22 +62,20 @@ def delete_files(*args):
         logging.debug(f'{arg} sent to trash')
 
 
-
-
-
-
-os.chdir("H:\WorkingDir\member_data")  # set CWD
+os.chdir("H:\WorkingDir\member_data")  # set CWD #TEMP DISABLED 14-02
+# os.chdir(r"H:\WorkingDir\member_data\testy")  #TEMP ADDED 14-02
 direc = os.getcwd()
 logging.debug(f'Setting CWD to {direc}')
 
 
-
-
-# TODO DONE: convert that project csv into a project xlsx
+# TODO DONE: convert that project csv (if exists) into a project xlsx
 # now converting csv to xlsx
-logging.debug(f'now converting csv to xlsx')
-# csv_to_xlsx("SurveyResults", "SurveyResults") # converts csv to xlsx, parameters are desired input and output filenames
-csv_to_xlsx(fname, fname)  # converts csv to xlsx, parameters are desired input and output filenames
+if ftype == 'csv':
+    logging.debug(f'now converting csv to xlsx')
+    # csv_to_xlsx("SurveyResults", "SurveyResults") # converts csv to xlsx, parameters are desired input and output filenames
+    csv_to_xlsx(fname, fname)  # converts csv to xlsx, parameters are desired input and output filenames
+else:
+    logging.debug('file type != csv so skipping csv -> xlsx conversion')
 
 # TODO DONE: convert that project xlsx into a project DB
 
